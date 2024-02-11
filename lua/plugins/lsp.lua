@@ -25,6 +25,7 @@ return {
       keymap { "<F7>", vim.lsp.buf.hover }
       keymap { "<F8>", pickers.lsp_definitions }
       keymap { "<leader><F8>", pickers.lsp_type_definitions }
+      keymap { "<leader><leader>", pickers.lsp_document_symbols }
       keymap {
         "<F11>",
         function()
