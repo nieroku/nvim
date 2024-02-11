@@ -46,6 +46,7 @@ or just `git clone` this repository to the Neovim configuration folder
 |    Shortcut     | Action                               |
 | :-------------: | :----------------------------------- |
 |   `<leader>s`   | Unhighlight search results           |
+| `<leader><CR>`  | Run LSP code actions                 |
 |     `<Tab>`     | Select buffer                        |
 |  `<Tab><Tab>`   | Go to previous buffer                |
 |    `<Tab>q`     | Close buffer                         |
@@ -60,6 +61,8 @@ or just `git clone` this repository to the Neovim configuration folder
 |     `<F6>`      | Open current file directory          |
 | `<leader><F6>`  | Open current working directory       |
 |     `<F7>`      | Show LSP hover                       |
+|     `<F8>`      | Go to definition                     |
+| `<leader><F8>`  | Go to type definition                |
 |     `<F10>`     | Open markdown preview                |
 |     `<F11>`     | List diagnostics                     |
 | `<leader><F11>` | List diagnostics in all buffers      |
