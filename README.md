@@ -1,11 +1,11 @@
 # Introduction
 
 Here is my neovim configuration based on `lazy.nvim`. I'm using it for coding,
-text editing, etc (for everything).
+text editing, etc. (for everything)
 
 # Installation
 
-This configuration can be installed using installation script that preserves old
+This configuration can be installed using script that preserves old
 configuration using git stash.
 
 Run
@@ -67,7 +67,9 @@ or just `git clone` this repository to the Neovim configuration folder
 |      `<F10>`       | Open markdown preview                |
 |      `<F11>`       | List diagnostics                     |
 |  `<leader><F11>`   | List diagnostics in all buffers      |
+|      `<F12>p`      | Plugin management                    |
 |      `<F12>s`      | Toggle autosave (default: on)        |
+|      `<F12>c`      | Select theme                         |
 
 ## Tmux
 
