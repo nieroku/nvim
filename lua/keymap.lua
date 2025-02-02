@@ -1,3 +1,4 @@
+-- TODO: Replace with vim.keymap
 return function(args)
   local lhs = args[1]
   local rhs = args[2]
@@ -23,5 +24,4 @@ return function(args)
   for _, mode in pairs(modes) do
     vim.api.nvim_set_keymap(mode, lhs, rhs, opts)
   end
-  -- TODO: Maybe rewrite using vim.keymap?
 end

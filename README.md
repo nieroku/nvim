@@ -1,7 +1,8 @@
 # Introduction
 
-Here is my neovim configuration based on `lazy.nvim`. I'm using it for coding,
-text editing, etc. (for everything)
+Here is my neovim configuration based on
+[lazy.nvim](https://github.com/folke/lazy.nvim). I'm using it for coding, text
+editing, etc. (for everything)
 
 # Installation
 
@@ -57,7 +58,6 @@ or just `git clone` this repository to the Neovim configuration folder
 |       `<F4>`       | List files                           |
 |   `<leader><F4>`   | List files with hidden               |
 |       `<F5>`       | Format                               |
-|   `<leader><F5>`   | Format (using LSP)                   |
 |       `<F6>`       | Open current file directory          |
 |   `<leader><F6>`   | Open current working directory       |
 |       `<F7>`       | Show LSP hover                       |
@@ -66,9 +66,9 @@ or just `git clone` this repository to the Neovim configuration folder
 |      `<F10>`       | Open markdown preview                |
 |      `<F11>`       | List diagnostics                     |
 |  `<leader><F11>`   | List diagnostics in all buffers      |
+|      `<F12>l`      | Toggle light/dark theme              |
 |      `<F12>p`      | Plugin management                    |
 |      `<F12>s`      | Toggle autosave (default: on)        |
-|      `<F12>c`      | Select theme                         |
 
 ## Tmux
 

@@ -1,5 +1,6 @@
 local keymap = require "keymap"
 
+-- TODO: Refactor
 return {
   {
     "L3MON4D3/LuaSnip",
@@ -10,23 +11,23 @@ return {
     "rafamadriz/friendly-snippets",
     name = "snippets",
     dependencies = { "luasnip" },
-    init = function()
+    config = function()
       require("luasnip.loaders.from_vscode").lazy_load()
     end,
   },
   {
     "hrsh7th/nvim-cmp",
     dependencies = {
-      "luasnip",
-      "snippets",
       "FelipeLema/cmp-async-path",
       "hrsh7th/cmp-buffer",
       "hrsh7th/cmp-cmdline",
-      "hrsh7th/cmp-nvim-lsp",
       "petertriho/cmp-git",
       "saadparwaiz1/cmp_luasnip",
+      "hrsh7th/cmp-nvim-lsp",
+      "luasnip",
+      "snippets",
     },
-    init = function()
+    config = function()
       local luasnip = require "luasnip"
       local cmp = require "cmp"
 
@@ -73,16 +74,12 @@ return {
           -- TODO: Fix backspace in snippet selection
         },
       }
-      cmp.setup.filetype(
-        "gitcommit",
-        {
-          sources = cmp.config.sources {
-            { name = "cmp_git" },
-            { name = "buffer" },
-          },
-        }
-      )
-      -- TODO: Setup cmdline autocompletetion
+      cmp.setup.filetype("gitcommit", {
+        sources = cmp.config.sources {
+          { name = "cmp_git" },
+          { name = "buffer" },
+        },
+      })
       for _, mode in ipairs { "/", "?" } do
         cmp.setup.cmdline(mode, { sources = { { name = "buffer" } } })
       end
