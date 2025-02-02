@@ -75,7 +75,7 @@ return {
     },
     -- TODO: Lazy load language server
     config = function()
-      for _, language_server in ipairs(language_server) do
+      for _, language_server in ipairs(language_servers) do
         if language_server:present() then
           language_server:setup()
         end
