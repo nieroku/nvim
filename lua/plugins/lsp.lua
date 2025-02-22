@@ -1,3 +1,5 @@
+local keymap = require "keymap"
+
 local language_server = {}
 
 function language_server:present()
@@ -39,43 +41,32 @@ return {
       { "<F2>", vim.lsp.buf.rename },
       { "<leader><F4>", vim.lsp.buf.format },
       { "<F7>", vim.lsp.buf.hover },
-      {
-        "<F8>",
-        function()
-          require("telescope.builtins").lsp_definitions()
-        end,
-      },
-      {
-        "<leader><F8>",
-        function()
-          require("telescope.builtins").lsp_type_definitions()
-        end,
-      },
-      {
-        "<leader><leader>",
-        function()
-          require("telescope.builtins").lsp_document_symbols()
-        end,
-      },
-      {
-        "<F11>",
-        function()
-          require("telescope.builtins").diagnostics {
-            bufnr = 0,
-            severity_bound = "WARN",
-          }
-        end,
-      },
-      {
-        "<leader><F11>",
-        function()
-          require("telescope.builtins").diagnostics { severity_bound = "WARN" }
-        end,
-      },
+      { "<F8>" },
+      { "<leader><F8>" },
+      { "<F11>" },
+      { "<leader><F11>" },
+      { "<leader><leader>" },
       { "<leader><CR>", vim.lsp.buf.code_action },
     },
-    -- TODO: Lazy load language server
     config = function()
+      local pickers = require "telescope.builtin"
+      keymap { "<F8>", pickers.lsp_definitions }
+      keymap { "<leader><F8>", pickers.lsp_type_definitions }
+      keymap { "<leader><leader>", pickers.lsp_document_symbols }
+      keymap {
+        "<F11>",
+        function()
+          pickers.diagnostics { bufnr = 0, severity_bound = "WARN" }
+        end,
+      }
+      keymap {
+        "<leader><F11>",
+        function()
+          pickers.diagnostics { bufnr = nil, severity_bound = "WARN" }
+        end,
+      }
+
+      -- TODO: Lazy load language server
       for _, language_server in ipairs(language_servers) do
         if language_server:present() then
           language_server:setup()
