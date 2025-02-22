@@ -11,6 +11,7 @@ end
 local language_servers = {
   { name = "clangd", ft = { "c", "cpp" } },
   { name = "gopls", ft = { "go" } },
+  { name = "mesonlsp", ft = { "meson" } },
   { name = "pyright", ft = { "python" } },
   { name = "taplo", ft = { "toml" } },
   { name = "zls", ft = { "zig" } },
