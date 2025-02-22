@@ -11,6 +11,7 @@ return {
         css = { require("formatter.filetypes.css").prettierd },
         go = { require("formatter.filetypes.go").gofmt },
         html = { require("formatter.filetypes.html").prettierd },
+        java = { require("formatter.filetypes.java").google_java_format },
         javascript = { require("formatter.filetypes.javascript").prettierd },
         json = { require("formatter.filetypes.json").prettierd },
         lua = { require("formatter.filetypes.lua").stylua },
