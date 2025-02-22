@@ -1,9 +1,7 @@
 return {
   "mhartington/formatter.nvim",
   cmd = { "Format", "FormatWrite", "FormatLock", "FormatWriteLock" },
-  keys = {
-    { "<F5>", "<Cmd>FormatWriteLock<CR>" },
-  },
+  keys = { { "<F5>", "<Cmd>FormatWrite<CR>" } },
   config = function()
     require("formatter").setup {
       logging = true,
