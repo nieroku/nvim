@@ -52,15 +52,6 @@ return {
           require("telescope.builtin").find_files { hidden = true }
         end,
       },
-      {
-        "<Tab><Tab>",
-        function()
-          require("telescope.builtin").buffers {
-            ignore_current_buffer = true,
-            sort_mru = true,
-          }
-        end,
-      },
     },
   },
 }
