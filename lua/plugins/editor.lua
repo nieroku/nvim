@@ -12,7 +12,7 @@ return {
     },
     opts = {
       condition = function(buf)
-        return vim.fn.getbufvar(buf, "&filetype") ~= "oil"
+        return not string.match(vim.api.nvim_buf_get_name(buf), "oil://")
       end,
     },
   },
