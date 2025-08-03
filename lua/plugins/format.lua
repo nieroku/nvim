@@ -9,7 +9,15 @@ return {
         c = { require("formatter.filetypes.c").clangformat },
         cpp = { require("formatter.filetypes.cpp").clangformat },
         css = { require("formatter.filetypes.css").prettierd },
-        go = { require("formatter.filetypes.go").gofmt },
+        go = {
+          function()
+            return {
+              exe = "gofmt",
+              args = { "-s" },
+              stdin = true,
+            }
+          end,
+        },
         html = { require("formatter.filetypes.html").prettierd },
         java = { require("formatter.filetypes.java").google_java_format },
         javascript = { require("formatter.filetypes.javascript").prettierd },
