@@ -6,8 +6,10 @@ function language_server:present()
   return vim.fn.executable(self.name or self.executable) == 1
 end
 
-function language_server:setup()
-  require("lspconfig")[self.name].setup(self.opts or {})
+function language_server:setup(capabilities)
+  local opts = self.opts or {}
+  opts.capabilities = capabilities
+  require("lspconfig")[self.name].setup(opts)
 end
 
 local language_servers = {
@@ -26,7 +28,9 @@ end
 return {
   {
     "neovim/nvim-lspconfig",
-    name = "lspconfig",
+    dependencies = {
+      "hrsh7th/cmp-nvim-lsp",
+    },
     ft = function(_, ft)
       for i = 1, #language_servers do
         language_server = language_servers[i]
@@ -67,9 +71,10 @@ return {
       }
 
       -- TODO: Lazy load language server
+      local capabilities = require("cmp_nvim_lsp").default_capabilities()
       for _, language_server in ipairs(language_servers) do
         if language_server:present() then
-          language_server:setup()
+          language_server:setup(capabilities)
         end
       end
     end,
