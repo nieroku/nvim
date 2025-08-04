@@ -65,6 +65,7 @@ or just `git clone` this repository to the Neovim configuration folder
 |      `<F10>`       | Open markdown preview                |
 |      `<F11>`       | List diagnostics                     |
 |  `<leader><F11>`   | List diagnostics in all buffers      |
+|      `<F12>a`      | Attach Github Copilot                |
 |      `<F12>l`      | Toggle light/dark theme              |
 |      `<F12>p`      | Plugin management                    |
 |      `<F12>s`      | Toggle autosave (default: on)        |

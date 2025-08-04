@@ -17,6 +17,7 @@ return {
       "hrsh7th/cmp-nvim-lsp",
       "https://codeberg.org/FelipeLema/cmp-async-path.git",
       "saadparwaiz1/cmp_luasnip",
+      "zbirenbaum/copilot-cmp",
     },
     config = function()
       local cmp = require "cmp"
@@ -62,8 +63,11 @@ return {
             end
           end, { "i", "s" }),
           ["<C-c>"] = cmp.mapping.abort(),
+          ["<C-j>"] = cmp.mapping.scroll_docs(4),
+          ["<C-k>"] = cmp.mapping.scroll_docs(-4),
         },
         sources = cmp.config.sources {
+          { name = "copilot" },
           { name = "nvim_lsp" },
           { name = "luasnip" },
           { name = "buffer" },
@@ -92,5 +96,16 @@ return {
         },
       })
     end,
+  },
+  { "zbirenbaum/copilot-cmp", config = true },
+  {
+    "zbirenbaum/copilot.lua",
+    cmd = "Copilot",
+    keys = { "<F12>a", "<Cmd>Copilot attach<CR>" },
+    opts = {
+      suggestion = { enabled = false },
+      panel = { enabled = false },
+    },
+    config = true,
   },
 }
