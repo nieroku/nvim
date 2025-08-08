@@ -1,5 +1,3 @@
-local keymap = require "keymap"
-
 local language_server = {}
 
 function language_server:present()
@@ -54,21 +52,15 @@ return {
     },
     config = function()
       local pickers = require "telescope.builtin"
-      keymap { "<F8>", pickers.lsp_definitions }
-      keymap { "<leader><F8>", pickers.lsp_type_definitions }
-      keymap { "<leader><leader>", pickers.lsp_document_symbols }
-      keymap {
-        "<F11>",
-        function()
-          pickers.diagnostics { bufnr = 0, severity_bound = "WARN" }
-        end,
-      }
-      keymap {
-        "<leader><F11>",
-        function()
-          pickers.diagnostics { bufnr = nil, severity_bound = "WARN" }
-        end,
-      }
+      vim.keymap.set("n", "<F8>", pickers.lsp_definitions)
+      vim.keymap.set("n", "<leader><F8>", pickers.lsp_type_definitions)
+      vim.keymap.set("n", "<leader><leader>", pickers.lsp_document_symbols)
+      vim.keymap.set("n", "<F11>", function()
+        pickers.diagnostics { bufnr = 0, severity_bound = "WARN" }
+      end)
+      vim.keymap.set("n", "<leader><F11>", function()
+        pickers.diagnostics { bufnr = nil, severity_bound = "WARN" }
+      end)
 
       -- TODO: Lazy load language server
       local capabilities = require("cmp_nvim_lsp").default_capabilities()

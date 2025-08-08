@@ -1,7 +1,5 @@
-local keymap = require "keymap"
-
-keymap { "<leader>s", "<Cmd>nohlsearch<CR>" }
-keymap { "<Tab>q", "<Cmd>bdelete<CR>" }
-keymap { "<Tab>Q", "<Cmd>bdelete!<CR>" }
-keymap { "<F12>p", "<Cmd>Lazy<CR>" }
-keymap { "jk", "<Esc>", mode = "i" }
+vim.keymap.set("n", "<leader>s", "<Cmd>nohlsearch<CR>")
+vim.keymap.set("n", "<Tab>q", "<Cmd>bdelete<CR>")
+vim.keymap.set("n", "<Tab>Q", "<Cmd>bdelete!<CR>")
+vim.keymap.set("n", "<F12>p", "<Cmd>Lazy<CR>")
+vim.keymap.set("i", "jk", "<Esc>")
