@@ -5,16 +5,33 @@ return {
     opts = {},
   },
   {
-    "pocco81/auto-save.nvim",
+    "okuuva/auto-save.nvim",
     lazy = false,
     keys = {
-      { "<F12>s", "<Cmd>ASToggle<CR>" },
+      { "<leader>ts", "<Cmd>ASToggle<CR>", desc = "Toggle autosave" },
     },
     opts = {
       condition = function(buf)
-        return not string.match(vim.api.nvim_buf_get_name(buf), "oil://")
+        return vim.fn.getbufvar(buf, "&filetype") ~= "oil"
       end,
     },
+    config = function(spec, opts)
+      require("auto-save").setup(opts)
+
+      local group = vim.api.nvim_create_augroup("autosave", {})
+
+      vim.api.nvim_create_autocmd("User", {
+        pattern = { "AutoSaveEnable", "AutoSaveDisable" },
+        group = group,
+        callback = function(event)
+          local msg = "Disabled"
+          if event.match == "AutoSaveEnable" then
+            msg = "Enabled"
+          end
+          vim.notify(msg, vim.log.levels.INFO, { title = "auto-save.nvim" })
+        end,
+      })
+    end,
   },
   {
     "numToStr/Comment.nvim",
