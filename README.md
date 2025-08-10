@@ -46,7 +46,6 @@ or just `git clone` this repository to the Neovim configuration folder
 
 |      Shortcut      | Action                               |
 | :----------------: | :----------------------------------- |
-|    `<leader>s`     | Unhighlight search results           |
 |   `<leader><CR>`   | Run LSP code actions                 |
 | `<leader><leader>` | List buffer symbols                  |
 |      `<Tab>q`      | Close buffer                         |
