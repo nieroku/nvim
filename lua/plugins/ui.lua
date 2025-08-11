@@ -6,9 +6,9 @@ return {
   "nvim-tree/nvim-web-devicons",
   {
     "stevearc/dressing.nvim",
-    dependencies = "telescope",
     opts = {
       input = { insert_only = false },
+      select = { enabled = false },
     },
   },
 }
