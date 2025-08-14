@@ -6,6 +6,8 @@ return {
       { "<F2>", vim.lsp.buf.rename, desc = "Rename symbol" },
     },
     config = function()
+      vim.lsp.inlay_hint.enable()
+
       vim.lsp.enable "clangd"
       vim.lsp.enable "gopls"
       vim.lsp.enable "mesonlsp"
