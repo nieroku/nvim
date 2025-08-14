@@ -6,14 +6,25 @@ return {
       { "<F2>", vim.lsp.buf.rename, desc = "Rename symbol" },
     },
     config = function()
+      vim.lsp.config("gopls", {
+        settings = {
+          gopls = {
+            hints = {
+              assignVariableTypes = true,
+              compositeLiteralFields = true,
+              constantValues = true,
+              parameterNames = true,
+              rangeVariableTypes = true,
+            },
+            staticcheck = nil,
+            vulncheck = "Imports",
+          },
+        },
+      })
+
       vim.lsp.inlay_hint.enable()
 
-      vim.lsp.enable "clangd"
       vim.lsp.enable "gopls"
-      vim.lsp.enable "mesonlsp"
-      vim.lsp.enable "pyright"
-      vim.lsp.enable "taplo"
-      vim.lsp.enable "zls"
     end,
   },
 }
