@@ -81,4 +81,8 @@ return {
       require "remember"
     end,
   },
+  {
+    "klen/nvim-config-local",
+    config = true,
+  },
 }
