@@ -35,6 +35,34 @@ return {
     },
   },
   {
+    "folke/which-key.nvim",
+    event = "VeryLazy",
+    cmd = "WhichKey",
+    keys = {
+      {
+        "<leader>?",
+        function()
+          require("which-key").show()
+        end,
+        mode = "",
+        desc = "Show keymaps",
+      },
+      {
+        "<C-\\>?",
+        function()
+          require("which-key").show()
+        end,
+        mode = { "i", "c", "t" },
+        desc = "Show keymaps",
+      },
+    },
+    opts = {
+      delay = 1000,
+      preset = "helix",
+      win = { row = 1 },
+    },
+  },
+  {
     "rcarriga/nvim-notify",
     cmd = { "Notifications", "NotificationsClear" },
     keys = {
