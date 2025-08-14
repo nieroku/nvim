@@ -39,43 +39,6 @@ return {
     },
   },
   {
-    "NMAC427/guess-indent.nvim",
-    commit = "84a4987",
-    opts = { auto_cmd = false },
-    config = function(_, opts)
-      local guess_indent = require "guess-indent"
-      guess_indent.setup(opts)
-
-      local augroup = vim.api.nvim_create_augroup("GuessIndent", {})
-      local callback = function(event)
-        guess_indent.set_from_buffer(event.buf, true, true)
-      end
-      vim.api.nvim_create_autocmd("BufReadPost", {
-        group = augroup,
-        desc = "Guess indentation when loading a file",
-        callback = callback,
-      })
-      vim.api.nvim_create_autocmd("BufNewFile", {
-        group = augroup,
-        desc = "Guess indentation when saving a new file",
-        callback = function(event)
-          vim.api.nvim_create_autocmd("BufWritePost", {
-            group = augroup,
-            buffer = event.buf,
-            callback = callback,
-            once = true,
-          })
-        end,
-      })
-      vim.api.nvim_create_autocmd("User", {
-        group = augroup,
-        desc = "Guess indentation when formatting a file",
-        pattern = "FormatterPost",
-        callback = callback,
-      })
-    end,
-  },
-  {
     "vladdoster/remember.nvim",
     config = function()
       require "remember"
