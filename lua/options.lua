@@ -3,6 +3,7 @@ local options = {
   cursorline = true,
   expandtab = true,
   fileencoding = "utf-8",
+  foldlevelstart = 99,
   hlsearch = true,
   mouse = "r",
   number = true,

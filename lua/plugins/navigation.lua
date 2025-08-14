@@ -70,13 +70,14 @@ return {
       require("fzf-lua").register_ui_select()
 
       vim.cmd [[
-      au FileType fzf tnoremap <Tab> <C-j>
-      au FileType fzf tnoremap <S-Tab> <C-k>
+        au FileType fzf tnoremap <Tab> <C-j>
+        au FileType fzf tnoremap <S-Tab> <C-k>
       ]]
     end,
   },
   {
     "stevearc/oil.nvim",
+    dependencies = { "nvim-tree/nvim-web-devicons" },
     lazy = false,
     keys = {
       {

@@ -22,7 +22,8 @@ return {
     version = "^2",
     dependencies = { "rafamadriz/friendly-snippets" },
     lazy = true,
-    config = function()
+    config = function(_, opts)
+      require("luasnip").setup(opts)
       require("luasnip.loaders.from_vscode").lazy_load()
     end,
   },
@@ -230,6 +231,7 @@ return {
       )
     end,
   },
+
   {
     "zbirenbaum/copilot.lua",
     cmd = "Copilot",

@@ -1,5 +1,13 @@
 return {
   {
+    "stevearc/dressing.nvim",
+    event = "VeryLazy",
+    opts = {
+      input = { insert_only = false },
+      select = { enabled = false },
+    },
+  },
+  {
     "nvim-lualine/lualine.nvim",
     dependencies = {
       "AndreM222/copilot-lualine",
@@ -25,54 +33,6 @@ return {
         extensions = { "quickfix", "oil" },
       }
     end,
-  },
-  "nvim-tree/nvim-web-devicons",
-  {
-    "stevearc/dressing.nvim",
-    opts = {
-      input = { insert_only = false },
-      select = { enabled = false },
-    },
-  },
-  {
-    "rachartier/tiny-inline-diagnostic.nvim",
-    opts = {
-      preset = "powerline",
-      options = {
-        multilines = { enabled = true },
-      },
-    },
-    config = function(_, opts)
-      require("tiny-inline-diagnostic").setup(opts)
-    end,
-  },
-  {
-    "folke/which-key.nvim",
-    event = "VeryLazy",
-    cmd = "WhichKey",
-    keys = {
-      {
-        "<leader>?",
-        function()
-          require("which-key").show()
-        end,
-        mode = "",
-        desc = "Show keymaps",
-      },
-      {
-        "<C-\\>?",
-        function()
-          require("which-key").show()
-        end,
-        mode = { "i", "c", "t" },
-        desc = "Show keymaps",
-      },
-    },
-    opts = {
-      delay = 1000,
-      preset = "helix",
-      win = { row = 1 },
-    },
   },
   {
     "rcarriga/nvim-notify",
@@ -111,5 +71,43 @@ return {
         .. "<Cmd>lua require('notify').dismiss()<CR>"
       vim.keymap.set("", "<C-l>", c_l_extented_rhs)
     end,
+  },
+  {
+    "rachartier/tiny-inline-diagnostic.nvim",
+    opts = {
+      preset = "powerline",
+      options = {
+        multilines = { enabled = true },
+      },
+    },
+  },
+  {
+    "folke/which-key.nvim",
+    dependencies = { "nvim-tree/nvim-web-devicons" },
+    event = "VeryLazy",
+    cmd = "WhichKey",
+    keys = {
+      {
+        "<leader>?",
+        function()
+          require("which-key").show()
+        end,
+        mode = "",
+        desc = "Show keymaps",
+      },
+      {
+        "<C-\\>?",
+        function()
+          require("which-key").show()
+        end,
+        mode = { "i", "c", "t" },
+        desc = "Show keymaps",
+      },
+    },
+    opts = {
+      delay = 1000,
+      preset = "helix",
+      win = { row = 1 },
+    },
   },
 }

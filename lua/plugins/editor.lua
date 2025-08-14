@@ -1,6 +1,7 @@
 return {
   {
     "okuuva/auto-save.nvim",
+    version = "^1",
     lazy = false,
     keys = {
       { "<leader>ts", "<Cmd>ASToggle<CR>", desc = "Toggle autosave" },
@@ -14,7 +15,6 @@ return {
       require("auto-save").setup(opts)
 
       local group = vim.api.nvim_create_augroup("autosave", {})
-
       vim.api.nvim_create_autocmd("User", {
         pattern = { "AutoSaveEnable", "AutoSaveDisable" },
         group = group,
@@ -28,24 +28,6 @@ return {
       })
     end,
   },
-  {
-    "numToStr/Comment.nvim",
-    opts = {
-      ignore = "^(%s*)$",
-      mappings = {
-        basic = true,
-        extra = true,
-      },
-    },
-  },
-  {
-    "vladdoster/remember.nvim",
-    config = function()
-      require "remember"
-    end,
-  },
-  {
-    "klen/nvim-config-local",
-    config = true,
-  },
+  { "klen/nvim-config-local", config = true },
+  { "vladdoster/remember.nvim", config = true },
 }

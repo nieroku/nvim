@@ -8,14 +8,17 @@ return {
       {
         "<F12>l",
         function()
-          local next = { light = "dark", dark = "light" }
-          vim.o.background = next[vim.o.background]
+          vim.o.background = ({
+            ["light"] = "dark",
+            ["dark"] = "light",
+          })[vim.o.background]
         end,
+        desc = "Toggle background (dark/light)",
       },
     },
-    config = function()
+    config = function(_, opts)
       local everforest = require "everforest"
-      everforest.setup()
+      everforest.setup(opts)
       everforest.load()
     end,
   },

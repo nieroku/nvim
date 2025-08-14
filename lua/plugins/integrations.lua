@@ -4,6 +4,14 @@ return {
     cond = function()
       return os.getenv "TMUX" ~= nil
     end,
+    cmd = {
+      "TmuxNavigateLeft",
+      "TmuxNavigateDown",
+      "TmuxNavigateUp",
+      "TmuxNavigateRight",
+      "TmuxNavigatePrevious",
+      "TmuxNavigatorProcessList",
+    },
     keys = {
       { "<A-h>", "<Cmd>TmuxNavigateLeft<CR>" },
       { "<A-j>", "<Cmd>TmuxNavigateDown<CR>" },

@@ -1,19 +1,21 @@
 local on_buffer_format = function(buf) end
 
 return {
+  { "numToStr/Comment.nvim", opts = { ignore = "^(%s*)$" } },
   {
     "nvim-treesitter/nvim-treesitter",
+    branch = "master",
     build = ":TSUpdate",
-    config = function()
-      require("nvim-treesitter.configs").setup {
-        highlight = { enable = true },
-        incremental_selection = { enable = true },
-        indent = { enable = true },
-      }
+    opts = {
+      highlight = { enable = true },
+      incremental_selection = { enable = true },
+      indent = { enable = true },
+    },
+    config = function(_, opts)
+      require("nvim-treesitter.configs").setup(opts)
 
       vim.o.foldmethod = "expr"
       vim.o.foldexpr = "v:lua.vim.treesitter.foldexpr()"
-      vim.o.foldlevelstart = 99
     end,
   },
 
