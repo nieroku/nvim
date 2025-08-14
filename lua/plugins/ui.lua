@@ -1,7 +1,30 @@
 return {
   {
     "nvim-lualine/lualine.nvim",
-    config = true,
+    dependencies = {
+      "AndreM222/copilot-lualine",
+      "arkav/lualine-lsp-progress",
+    },
+    opts = function()
+      local copilot_section = {
+        "copilot",
+        cond = function()
+          return vim.g.copilot_loaded
+        end,
+        show_colors = true,
+      }
+      return {
+        sections = {
+          lualine_a = { "mode" },
+          lualine_b = { "branch", "diff", "diagnostics" },
+          lualine_c = { "filename", "lsp_progress" },
+          lualine_x = { copilot_section, "encoding", "fileformat", "filetype" },
+          lualine_y = { "progress" },
+          lualine_z = { "location" },
+        },
+        extensions = { "quickfix", "oil" },
+      }
+    end,
   },
   "nvim-tree/nvim-web-devicons",
   {
