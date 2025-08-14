@@ -31,6 +31,13 @@ return {
     "hrsh7th/nvim-cmp",
     dependencies = {
       {
+        "petertriho/cmp-git",
+        dependencies = { "nvim-lua/plenary.nvim" },
+        config = function(_, opts)
+          require("cmp_git").setup(opts)
+        end,
+      },
+      {
         "hrsh7th/cmp-nvim-lsp",
         init = function()
           vim.lsp.config("*", {
@@ -216,6 +223,14 @@ return {
           },
         },
       }
+
+      cmp.setup.filetype("gitcommit", {
+        sources = cmp.config.sources({
+          { name = "git" },
+        }, {
+          { name = "buffer" },
+        }),
+      })
 
       cmp.setup.cmdline(":", {
         mapping = mapping,
