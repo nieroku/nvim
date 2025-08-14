@@ -8,6 +8,16 @@ end
 
 return {
   {
+    "windwp/nvim-autopairs",
+    event = "InsertEnter",
+    opts = {
+      check_ts = true,
+      map_c_h = true,
+      map_c_w = true,
+    },
+  },
+
+  {
     "L3MON4D3/LuaSnip",
     version = "^2",
     dependencies = { "rafamadriz/friendly-snippets" },
@@ -33,6 +43,7 @@ return {
       "https://codeberg.org/FelipeLema/cmp-async-path.git",
       "onsails/lspkind.nvim",
       "saadparwaiz1/cmp_luasnip",
+      "windwp/nvim-autopairs",
     },
     event = { "CmdlineEnter", "InsertEnter" },
     config = function()
@@ -212,6 +223,11 @@ return {
           { name = "cmdline" },
         },
       })
+
+      cmp.event:on(
+        "confirm_done",
+        require("nvim-autopairs.completion.cmp").on_confirm_done()
+      )
     end,
   },
   {
