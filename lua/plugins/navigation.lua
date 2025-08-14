@@ -6,12 +6,12 @@ return {
     cmd = "FzfLua",
     keys = {
       { "<F1>", "<Cmd>FzfLua help_tags<CR>", desc = "Open Neovim Help" },
-      { "<F3>", "<Cmd>FzfLua live_grep<CR>", desc = "Live grep" },
-      { "<F4>", "<Cmd>FzfLua files<CR>", desc = "Find files" },
+      { "<leader>h", "<Cmd>FzfLua help_tags<CR>", desc = "Open Neovim Help" },
+      { "<leader>/", "<Cmd>FzfLua live_grep<CR>", desc = "Live grep" },
       {
-        "gO",
-        "<Cmd>FzfLua lsp_document_symbols<CR>",
-        desc = "List document symbols",
+        "<leader><CR>",
+        "<Cmd>FzfLua global<CR>",
+        desc = "Find file or LSP symbol",
       },
     },
     opts = function()
@@ -81,16 +81,18 @@ return {
     lazy = false,
     keys = {
       {
-        "<F6>",
+        "<leader>o",
         function()
           require("oil").open()
         end,
+        desc = "Open the current file's directory",
       },
       {
-        "<leader><F6>",
+        "<leader>O",
         function()
           require("oil").open(vim.fn.getcwd())
         end,
+        desc = "Open current working directory",
       },
     },
     opts = {

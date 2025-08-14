@@ -1,10 +1,6 @@
 return {
   {
     "neovim/nvim-lspconfig",
-    lazy = false,
-    keys = {
-      { "<F2>", vim.lsp.buf.rename, desc = "Rename symbol" },
-    },
     config = function()
       vim.lsp.config("gopls", {
         settings = {

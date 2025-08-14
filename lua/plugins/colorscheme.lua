@@ -6,7 +6,7 @@ return {
     priority = 1000,
     keys = {
       {
-        "<F12>l",
+        "<leader>tl",
         function()
           vim.o.background = ({
             ["light"] = "dark",
