@@ -28,6 +28,15 @@ return {
       })
     end,
   },
-  { "klen/nvim-config-local", config = true },
+  {
+    "klen/nvim-config-local",
+    cmd = {
+      "ConfigLocalSource",
+      "ConfigLocalEdit",
+      "ConfigLocalTrust",
+      "ConfigLocalDeny",
+    },
+    opts = { lookup_parents = false },
+  },
   { "vladdoster/remember.nvim", config = true },
 }
