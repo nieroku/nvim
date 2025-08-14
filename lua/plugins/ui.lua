@@ -35,6 +35,18 @@ return {
     },
   },
   {
+    "rachartier/tiny-inline-diagnostic.nvim",
+    opts = {
+      preset = "powerline",
+      options = {
+        multilines = { enabled = true },
+      },
+    },
+    config = function(_, opts)
+      require("tiny-inline-diagnostic").setup(opts)
+    end,
+  },
+  {
     "folke/which-key.nvim",
     event = "VeryLazy",
     cmd = "WhichKey",
