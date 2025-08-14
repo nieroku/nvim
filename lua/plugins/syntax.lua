@@ -71,6 +71,11 @@ return {
         end,
         desc = "Format buffer",
       },
+      {
+        "<leader>F",
+        "<Cmd>ConformInfo<CR>",
+        desc = "Open formatters info",
+      },
     },
     init = function()
       vim.o.formatexpr = "v:lua.require'conform'.formatexpr()"
