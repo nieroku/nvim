@@ -51,6 +51,7 @@ return {
       },
     },
     init = function()
+      ---@diagnostic disable-next-line: duplicate-set-field
       vim.notify = function(msg, level, opts)
         vim.notify = require "notify"
         vim.notify(msg, level, opts)

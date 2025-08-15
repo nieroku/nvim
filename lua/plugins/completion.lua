@@ -59,7 +59,6 @@ return {
       local cmp = require "cmp"
       local compare = require "cmp.config.compare"
       local types = require "cmp.types"
-      local lspkind = require "lspkind"
       local luasnip = require "luasnip"
 
       local function should_complete()
@@ -102,7 +101,7 @@ return {
             end)
           end,
           s = tab_insert_mapping,
-          c = function(fallback)
+          c = function()
             if not cmp.visible() then
               cmp.complete()
             end

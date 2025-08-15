@@ -11,7 +11,7 @@ return {
         return vim.fn.getbufvar(buf, "&filetype") ~= "oil"
       end,
     },
-    config = function(spec, opts)
+    config = function(_, opts)
       require("auto-save").setup(opts)
 
       local group = vim.api.nvim_create_augroup("autosave", {})

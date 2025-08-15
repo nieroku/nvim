@@ -65,7 +65,7 @@ return {
         },
       }
     end,
-    config = function(spec, opts)
+    config = function(_, opts)
       require("fzf-lua").setup(opts)
       require("fzf-lua").register_ui_select()
 

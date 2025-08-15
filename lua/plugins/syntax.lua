@@ -1,4 +1,4 @@
-local on_buffer_format = function(buf) end
+local on_buffer_format = function() end
 
 return {
   { "numToStr/Comment.nvim", opts = { ignore = "^(%s*)$" } },
