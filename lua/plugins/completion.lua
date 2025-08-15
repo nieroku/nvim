@@ -49,6 +49,7 @@ return {
       "hrsh7th/cmp-buffer",
       "hrsh7th/cmp-cmdline",
       "https://codeberg.org/FelipeLema/cmp-async-path.git",
+      "lukas-reineke/cmp-under-comparator",
       "onsails/lspkind.nvim",
       "saadparwaiz1/cmp_luasnip",
       "windwp/nvim-autopairs",
@@ -56,6 +57,8 @@ return {
     event = { "CmdlineEnter", "InsertEnter" },
     config = function()
       local cmp = require "cmp"
+      local compare = require "cmp.config.compare"
+      local types = require "cmp.types"
       local lspkind = require "lspkind"
       local luasnip = require "luasnip"
 
@@ -180,6 +183,23 @@ return {
         ["<C-c>"] = cmp.mapping(cmp.mapping.abort(), { "i", "c" }),
       }
 
+      local function promote_snippets_on_newline(entry1, entry2)
+        local line = vim.api.nvim_get_current_line()
+        local _, col = unpack(vim.api.nvim_win_get_cursor(0))
+        if line:sub(1, col):match "^%s*$" ~= nil then
+          if entry1:get_kind() == entry2:get_kind() then
+            return nil
+          end
+          if entry1:get_kind() == types.lsp.CompletionItemKind.Snippet then
+            return true
+          end
+          if entry2:get_kind() == types.lsp.CompletionItemKind.Snippet then
+            return false
+          end
+        end
+        return nil
+      end
+
       cmp.setup {
         completion = { autocomplete = false },
         mapping = mapping,
@@ -189,11 +209,28 @@ return {
             luasnip.lsp_expand(args.body)
           end,
         },
-        sources = cmp.config.sources {
-          { name = "luasnip" },
-          { name = "nvim_lsp" },
-          { name = "async_path", option = { trailing_slash = true } },
+        sorting = {
+          priority_weight = 2,
+          comparators = {
+            promote_snippets_on_newline,
+            compare.offset,
+            compare.exact,
+            compare.score,
+            compare.recently_used,
+            compare.locality,
+            compare.kind,
+            require("cmp-under-comparator").under,
+            compare.sort_text,
+            compare.length,
+            compare.order,
+          },
         },
+        sources = cmp.config.sources({
+          { name = "async_path", option = { trailing_slash = true } },
+        }, {
+          { name = "nvim_lsp" },
+          { name = "luasnip" },
+        }),
 
         formatting = {
           fields = { "kind", "abbr", "menu" },
@@ -207,6 +244,7 @@ return {
                 async_path = "[Path]",
                 buffer = "[Buffer]",
                 cmdline = "[Cmdline]",
+                git = "[Git]",
                 luasnip = "[LuaSnip]",
                 nvim_lsp = "[LSP]",
               },
@@ -226,18 +264,17 @@ return {
 
       cmp.setup.filetype("gitcommit", {
         sources = cmp.config.sources({
+          { name = "async_path", option = { trailing_slash = true } },
           { name = "git" },
-        }, {
-          { name = "buffer" },
-        }),
+        }, { { name = "buffer" } }),
       })
 
       cmp.setup.cmdline(":", {
         mapping = mapping,
-        sources = {
-          { name = "async_path", option = { trailing_slash = true } },
-          { name = "cmdline" },
-        },
+        sources = cmp.config.sources(
+          { { name = "async_path", option = { trailing_slash = true } } },
+          { { name = "cmdline", option = { ignore_cmds = {} } } }
+        ),
       })
 
       cmp.event:on(
