@@ -13,7 +13,32 @@ vim.keymap.set("n", "<leader>t+", function()
     vim.log.levels.INFO,
     { title = "Options" }
   )
-end)
+
+local problems = {
+  vim.diagnostic.severity.ERROR,
+  vim.diagnostic.severity.WARN,
+}
+vim.keymap.set("n", "<leader>td", function()
+  vim.diagnostic.enable(not vim.diagnostic.is_enabled())
+end, { desc = "Toggle diagnostics" })
+vim.keymap.set("n", "<leader>d", function()
+  vim.diagnostic.setqflist()
+end, { desc = "Add all diagnostics to quickfix list" })
+vim.keymap.set("n", "<leader>p", function()
+  vim.diagnostic.setqflist { title = "Problems", severity = problems }
+end, { desc = "Add problems to quickfix list" })
+vim.keymap.set("", "[d", function()
+  vim.diagnostic.jump { count = -1 }
+end, { desc = "Previous diagnostic" })
+vim.keymap.set("", "]d", function()
+  vim.diagnostic.jump { count = 1 }
+end, { desc = "Next error or warning" })
+vim.keymap.set("", "[p", function()
+  vim.diagnostic.jump { count = -1, severity = problems }
+end, { desc = "Previous error or warning" })
+vim.keymap.set("", "]p", function()
+  vim.diagnostic.jump { count = 1, severity = problems }
+end, { desc = "Next error or warning" })
 
 vim.keymap.set("i", "jk", "<Esc>")
 vim.keymap.set("i", "<F1>", "<lt>F1>")
