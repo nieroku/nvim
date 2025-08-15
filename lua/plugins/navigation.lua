@@ -26,13 +26,13 @@ return {
               reuse = true,
               header = false,
             },
-            ["ctrl-h"] = {
-              fn = actions.toggle_hidden,
+            ["ctrl-g"] = {
+              fn = actions.toggle_ignore,
               reuse = true,
               header = false,
             },
-            ["ctrl-i"] = {
-              fn = actions.toggle_ignore,
+            ["ctrl-h"] = {
+              fn = actions.toggle_hidden,
               reuse = true,
               header = false,
             },
