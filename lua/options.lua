@@ -5,6 +5,7 @@ local options = {
   fileencoding = "utf-8",
   foldlevelstart = 99,
   hlsearch = true,
+  jumpoptions = { "stack" },
   mouse = "r",
   number = true,
   relativenumber = true,

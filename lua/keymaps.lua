@@ -1,7 +1,15 @@
 vim.keymap.set("n", "<leader>q", "<Cmd>bdelete<CR>")
 vim.keymap.set("n", "<leader>Q", "<Cmd>bdelete!<CR>")
-vim.keymap.set("n", "<leader><leader>", "<Cmd>Lazy<CR>")
+vim.keymap.set(
+  "n",
+  "<leader><leader>",
+  "<Cmd>Lazy<CR>",
+  { desc = "Open plugins menu" }
+)
+
 vim.keymap.set("n", "<leader>cc", "<Cmd>cclose<CR>")
+vim.keymap.set("n", "<leader>lc", "<Cmd>lclose<CR>")
+
 vim.keymap.set("n", "<leader>t+", function()
   if vim.tbl_contains(vim.opt.clipboard, "unnamedplus") then
     vim.opt.clipboard:remove "unnamedplus"
@@ -13,6 +21,7 @@ vim.keymap.set("n", "<leader>t+", function()
     vim.log.levels.INFO,
     { title = "Options" }
   )
+end, { desc = "Toggle clipboard+=unnamedplus" })
 
 local problems = {
   vim.diagnostic.severity.ERROR,
