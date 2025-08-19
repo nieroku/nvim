@@ -81,14 +81,14 @@ return {
     lazy = false,
     keys = {
       {
-        "<leader>o",
+        "<leader>u",
         function()
           require("oil").open()
         end,
         desc = "Open the current file's directory",
       },
       {
-        "<leader>O",
+        "<leader>U",
         function()
           require("oil").open(vim.fn.getcwd())
         end,

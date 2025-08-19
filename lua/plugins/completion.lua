@@ -203,6 +203,7 @@ return {
         completion = { autocomplete = false },
         mapping = mapping,
         performance = { max_view_entries = 16 },
+        preselect = cmp.PreselectMode.None,
         snippet = {
           expand = function(args)
             luasnip.lsp_expand(args.body)
@@ -287,7 +288,7 @@ return {
     "zbirenbaum/copilot.lua",
     cmd = "Copilot",
     keys = {
-      { "<leader>tc", desc = "Toggle Copilot" },
+      { "<leader>tc", desc = "Toggle Copilot suggestions" },
     },
     opts = {
       panel = { enabled = false },
@@ -308,7 +309,6 @@ return {
     config = function(_, opts)
       local copilot = require "copilot"
       local client = require "copilot.client"
-      local command = require "copilot.command"
       local suggestion = require "copilot.suggestion"
 
       copilot.setup(opts)
@@ -348,14 +348,12 @@ return {
       end
 
       vim.keymap.set("n", "<leader>tc", function()
-        vim.keymap.set("n", "<leader>tc", function()
-          if client.is_disabled() then
-            command.enable()
-            client.buf_attach()
-          else
-            command.disable()
-          end
-        end, { desc = "Enable/disable Copilot" })
+        vim.keymap.set(
+          "n",
+          "<leader>tc",
+          "<Cmd>Copilot suggestion<CR>",
+          { desc = "Toggle Copilot suggestions" }
+        )
       end)
 
       vim.g.copilot_loaded = true

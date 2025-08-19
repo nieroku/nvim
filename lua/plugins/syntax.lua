@@ -94,7 +94,7 @@ return {
         nix = { "nixpkgs_fmt" },
         python = { "autopep8" },
         yaml = { "prettierd", "prettier" },
-        ["_"] = { "trim_newlines", "trim_whitespace", stop_after_first = false },
+        ["_"] = { "trim_whitespace" },
       },
       default_format_opts = {
         lsp_format = "fallback",
