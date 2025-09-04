@@ -93,6 +93,7 @@ return {
         markdown = { "prettierd", "prettier" },
         nix = { "nixpkgs_fmt" },
         python = { "autopep8" },
+        scala = { "scalafmt" },
         yaml = { "prettierd", "prettier" },
         ["_"] = { "trim_whitespace" },
       },
